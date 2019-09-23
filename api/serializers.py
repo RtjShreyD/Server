@@ -1,12 +1,12 @@
 from .models import SerialNo, Order, Status, Transaction
 from rest_framework import serializers
 
-class SerialNoListSerializer():
+class SerialNoListSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = SerialNo
         fields = '__all__'
 
-class OrderCreateSerializer():
+class OrderCreateSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'
@@ -19,17 +19,17 @@ class OrderCreateSerializer():
 
         return instance
 
-class StatusBooleanSerializer():
+class StatusBooleanSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Status
         fields = '__all__'
 
-class OrderListSerializer():
+class OrderListSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'
 
-class TransactionSerializer():
+class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'

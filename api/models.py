@@ -1,17 +1,17 @@
 from django.db import models    
-from django.urls import reverse
+
 
 class SerialNo(models.Model): #Will be our logger
     
     ser_no = models.CharField(max_length=20)
     
     def __str__(self):
-        return "Serial No:" + self.ser_no + "Working"
+        return "Serial No:" + self.ser_no 
 
 class Order(models.Model):
     
     order_ids = models.CharField(max_length=20)
-    ser_no = models.ManyToManyField(SerialNo, on_delete=models.PROTECT)
+    ser_no = models.ForeignKey(SerialNo, on_delete=models.PROTECT)
 
     def __str__(self):
         return "Serial No:" + self.ser_no + "Order:" + self.order
@@ -20,7 +20,7 @@ class Order(models.Model):
 class Status(models.Model):
     
     status = models.BooleanField()
-    ser_no = models.ManyToManyField(SerialNo, on_delete=models.PROTECT)
+    ser_no = models.ForeignKey(SerialNo, on_delete=models.PROTECT)
 
     def __str__(self):
         
@@ -31,10 +31,10 @@ class Status(models.Model):
 
 class Transaction(models.Model):
 
-    trans_status = models.IntegerField(max_length=3)
-    ser_no = models.ManyToManyField(SerialNo, on_delete=models.PROTECT)
-    order_ids = models.ForeignKey(Order)
-    status = models.ForeignKey(Status)
+    trans_status = models.IntegerField()
+    ser_no = models.ForeignKey(SerialNo, on_delete=models.PROTECT)
+    order_ids = models.ForeignKey(Order, on_delete=models.PROTECT)
+    status = models.ForeignKey(Status, on_delete=models.PROTECT)
 
     def __str__(self):
         if(self.trans_status==0):

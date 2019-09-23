@@ -5,7 +5,6 @@ from .serializers import ( SerialNoListSerializer,
                            StatusBooleanSerializer, 
                            OrderCreateSerializer, 
                            OrderListSerializer,
-                           LoggerSerializer,
                            TransactionSerializer,
 )
 
@@ -17,10 +16,14 @@ class OrderCreateStatusSetView(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderCreateSerializer
 
-class OrderListView():
+class OrderListView(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderListSerializer
 
-class TransactionListView():
+class TransactionListView(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
-    serializer_class = LoggerSerializer
+    serializer_class = TransactionSerializer
+
+class StatusView(viewsets.ModelViewSet):
+    queryset = Status.objects.all()
+    serializer_class = StatusBooleanSerializer
