@@ -4,10 +4,9 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('seriallist', views.SerialNoListView)
-router.register('transactionlist', views.TransactionListView)
-router.register('ordercreatestatus', views.OrderCreateStatusSetView)
-router.register('orderlist', views.OrderListView)
+router.register('ordercreatestatus', views.OrderCreateView)
 router.register('statusview', views.StatusView)
+router.register('userlist', views.UsersListView)
 
 urlpatterns = [
     path('', include(router.urls))
